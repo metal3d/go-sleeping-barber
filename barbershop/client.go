@@ -18,18 +18,20 @@ func (c *Client) EnterShop(shop *Shop) {
 		}
 		select {
 		case shop.WaitingRoom <- c:
-			//le client a trouvé de la place
+			// yes ! client found a seat
 			fmt.Printf(":) %s found a seat\n", c.GetName())
 			select {
-			// on vérifie que le barbier dort pas
+			// we check that the barber is not sleeping
 			case shop.Barbers.WakeMe <- c:
+				// lazy barber ! wake him up !
 				fmt.Printf("WAKE UP ! screams %s\n", c.GetName())
 			default:
-				//rien à faire
+				// default... do nothing (default is necessary there)
 			}
-			return
+			return // stop the problem, client is now managed by barber
 
 		default:
+			// no seat (write on channel failed)
 			fmt.Printf("... %s will be back later ...\n", c.GetName())
 			time.Sleep(time.Millisecond * 100)
 		}
@@ -40,7 +42,7 @@ func (c *Client) EnterShop(shop *Shop) {
 
 // create a new client (pointer)
 func NewClient(name string) *Client {
-	c := new(Client) // retourne un pointeur
+	c := new(Client) // returns a pointer, equiv. &Client{}
 	c.name = name
 	return c
 }
