@@ -8,8 +8,10 @@ This is very simple:
 - a barber manage a shop with a waiting room
 - a waiting room has got some seat
 - some clients enter the shop, try to find a free seat
+
   - free seat: ok, wait for barber
   - no seat: go out... (and retry later if you want)
+
 - if the barber has no clients, he decide to sleep
 - if client enter and see that the barber is sleeping, wake him
 
@@ -34,12 +36,14 @@ What does Client:
 
 - client tries to write on waitingroom channel of the shop
 - if ok, he tries to write on the "wake" channel of barber:
+
   - no write ? because barber is awake
   - write ok ? barber was sleeping
 
 What does Barber:
 
 - barber tries to read waitingroom channels
+
   - read ok ? there was at least one client
   - no read: let's sleep => read the wake channel until someone write inside
 
