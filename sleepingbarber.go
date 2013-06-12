@@ -9,8 +9,10 @@ import (
 func main() {
 	// create a barber
 	barber := barbershop.NewBarber("John")
+
 	// and create a shop, a barber will manage thid
-	shop := barbershop.NewShop(barber)
+	// we give 4 seats to the shop
+	shop := barbershop.NewShop(barber, 4)
 
 	// let's barber manage the shop... and continue
 	go barber.ManageShop(shop)

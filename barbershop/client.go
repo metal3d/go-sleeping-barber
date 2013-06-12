@@ -22,7 +22,7 @@ func (c *Client) EnterShop(shop *Shop) {
 			fmt.Printf(":) %s found a seat\n", c.GetName())
 			select {
 			// we check that the barber is not sleeping
-			case shop.Barbers.WakeMe <- c:
+			case shop.Barber.WakeMe <- c:
 				// lazy barber ! wake him up !
 				fmt.Printf("WAKE UP ! screams %s\n", c.GetName())
 			default:
