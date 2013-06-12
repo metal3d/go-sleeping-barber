@@ -2,7 +2,7 @@ package barbershop
 
 // Base structure for humans (barber and client)
 type Human struct {
-	name string // minuscule, donc non exportée hors package
+	name string // minuscule, so not exported outside package
 }
 
 // Return the human name
