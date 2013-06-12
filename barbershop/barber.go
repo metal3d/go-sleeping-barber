@@ -5,7 +5,7 @@ import "time"
 
 type Barber struct {
 	Human               // Barber is composed as an Human
-	WakeMe chan *Client // and have clients to satisfy
+	WakeMe chan *Client // and can be waked by a client
 }
 
 // barber manage waitin room of the shop
@@ -22,7 +22,7 @@ func (b *Barber) ManageShop(shop *Shop) {
 			// pas de client,on fait une action par défaut
 		default:
 			fmt.Printf("%s want to sleep... zzZZZzzz\n", b.GetName())
-			c := <-b.WakeMe
+			c := <-b.WakeMe // not a "select case" so it blocks there
 			fmt.Printf("%s waked %s\n", c.GetName(), b.GetName())
 		}
 	}
