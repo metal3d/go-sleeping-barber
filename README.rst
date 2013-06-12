@@ -22,6 +22,22 @@ In many langages, this problem can be solved by using mutex. But in Go the probl
 - channels
 - select statement
 
+
+Test the application
+--------------------
+
+To run the sample, you'll need Go 1.x and launch in a terminal::
+
+        go run sleepingbarber.go
+
+You can compile the example and give binary to other computer even if you don't have install Go runtime on those computers::
+
+        go build sleepingbarber.go
+        # launch binary:
+        ./sleepingbarber
+
+The binary is a static ELF binary. Remeber that you can't launch a binary on 32 bits system if you compiled binary with 64 bits computer.
+
 Implementation
 --------------
 
